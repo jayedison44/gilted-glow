@@ -14,7 +14,197 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      content: {
+        Row: {
+          content_type: string
+          created_at: string
+          creator_id: string
+          description: string | null
+          duration: number | null
+          file_url: string | null
+          id: string
+          is_active: boolean | null
+          preview_url: string | null
+          price_credits: number
+          purchases_count: number | null
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          views_count: number | null
+        }
+        Insert: {
+          content_type: string
+          created_at?: string
+          creator_id: string
+          description?: string | null
+          duration?: number | null
+          file_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          preview_url?: string | null
+          price_credits?: number
+          purchases_count?: number | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          views_count?: number | null
+        }
+        Update: {
+          content_type?: string
+          created_at?: string
+          creator_id?: string
+          description?: string | null
+          duration?: number | null
+          file_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          preview_url?: string | null
+          price_credits?: number
+          purchases_count?: number | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          views_count?: number | null
+        }
+        Relationships: []
+      }
+      credit_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string | null
+          id: string
+          reference_id: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          reference_id?: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          reference_id?: string | null
+          transaction_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      credits: {
+        Row: {
+          balance: number
+          id: string
+          total_purchased: number
+          total_spent: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          balance?: number
+          id?: string
+          total_purchased?: number
+          total_spent?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          balance?: number
+          id?: string
+          total_purchased?: number
+          total_spent?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age_verified: boolean | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          date_of_birth: string | null
+          display_name: string | null
+          id: string
+          is_creator: boolean | null
+          is_verified: boolean | null
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          age_verified?: boolean | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          display_name?: string | null
+          id?: string
+          is_creator?: boolean | null
+          is_verified?: boolean | null
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          age_verified?: boolean | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          display_name?: string | null
+          id?: string
+          is_creator?: boolean | null
+          is_verified?: boolean | null
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      purchases: {
+        Row: {
+          content_id: string
+          credits_spent: number
+          id: string
+          purchased_at: string
+          user_id: string
+        }
+        Insert: {
+          content_id: string
+          credits_spent: number
+          id?: string
+          purchased_at?: string
+          user_id: string
+        }
+        Update: {
+          content_id?: string
+          credits_spent?: number
+          id?: string
+          purchased_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_content_id_fkey"
+            columns: ["content_id"]
+            isOneToOne: false
+            referencedRelation: "content"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
